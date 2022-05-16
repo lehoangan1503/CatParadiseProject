@@ -1,0 +1,17 @@
+.cat-card {
+  width: 65%;
+  margin: 5px auto;
+  .image-container {
+    width: 100%;
+
+    overflow: hidden;
+    img {
+      max-width: 100%;
+      transition: transform 1s ease;
+      overflow: hidden;
+      &:hover {
+        transform: scale(1.5);
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css"
+    />
+    <title>Document</title>
+    <style>
+      #nprogress .bar {
+        background: red !important;
+      }
+      #nprogress .peg {
+        box-shadow: 0 0 10px red, 0 0 5px red !important;
+      }
+      #nprogress .spinner-icon {
+        border-top-color: red !important;
+        border-left-color: red !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="test()"></button>
+    <script>
+      function test() {
+        const arr = [];
+
+        const arr1 = arr.map((value) => {
+          return value * 2;
+        });
+        console.log(arr1);
+      }
+    </script>
+  </body>
+</html>
