@@ -54,60 +54,6 @@ class CatParadiseHeader extends Component {
     return averageLongevityOfAllCats;
   }
 
-  findTotalCountries = () => {
-    let totalCountries = ["country"];
-    this.props.catBreeds.forEach((cat) => {
-      let addNewCountry = false;
-      for (let index = 0; index < totalCountries.length; index++) {
-        if (cat.country_code === totalCountries[index]) {
-          addNewCountry = false;
-          break;
-        }
-        addNewCountry = true;
-      }
-
-      if (addNewCountry === true) totalCountries.push(cat.country_code);
-    });
-    return totalCountries;
-  };
-  countCountryHaveCatBreeds = () => {
-    return this.findTotalCountries().length - 1;
-  };
-
-  ascendingNumberCatBreedsOfCountry = () => {
-    const totalCountries = this.findTotalCountries();
-
-    const countriesObjArr = totalCountries.map((country) => {
-      return { country: country, catBreeds: 0 };
-    });
-
-    this.props.catBreeds.forEach((cat) => {
-      for (let index = 0; index < countriesObjArr.length; index++) {
-        if (cat.country_code === countriesObjArr[index].country) {
-          countriesObjArr[index].catBreeds =
-            countriesObjArr[index].catBreeds + 1;
-        }
-      }
-    });
-    const ascendingNumberCatBreedsOfCountry = countriesObjArr.sort(
-      (country1, country2) => {
-        return country1.catBreeds - country2.catBreeds;
-      }
-    );
-    return ascendingNumberCatBreedsOfCountry;
-  };
-  listAscendingNumberOfCatBreedsOfCountry = () => {
-    let arrOfAscending = this.ascendingNumberCatBreedsOfCountry();
-
-    let listCountriesAscending = arrOfAscending.map((country) => {
-      return (
-        <li key={country.country}>
-          {country.country}: {country.catBreeds} cat breeds.
-        </li>
-      );
-    });
-    return listCountriesAscending;
-  };
   findCountryHaveHighestCatBreeds = () => {
     let countriesObjArr = this.ascendingNumberCatBreedsOfCountry();
     return countriesObjArr[countriesObjArr.length - 1].country;
@@ -131,14 +77,6 @@ class CatParadiseHeader extends Component {
             On average a cat can weight about{" "}
             <span>{this.averageWeight().toFixed(2)} </span> Kg and live{" "}
             <span>{this.averageLongevity().toFixed(2)}</span> years.
-          </p>
-          <p>
-            There are <span>{this.countCountryHaveCatBreeds()} </span>countries
-            have cat breeds.
-          </p>
-          <p>
-            The country have the highest cat breeds is{" "}
-            <span>{this.findCountryHaveHighestCatBreeds()}</span>.
           </p>
         </div>
       </div>

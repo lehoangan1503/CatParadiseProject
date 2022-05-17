@@ -4,7 +4,7 @@ const CatCard = ({
 }) => {
   return (
     <div className="cat-card">
-      <div class="image-container"><img src={image.url} alt="Cat not Found" /></div>
+      <div className="image-container"><img src={image.url} alt="Cat not Found" /></div>
       <div className="cat-card-body">
         <p>
           Name: <span>{name}</span>

@@ -11,7 +11,24 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  letter-spacing: 1.25px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+ 
+}
+::-webkit-scrollbar-track {
+  box-shadow: 0 0 5px #00f inset;
+  background: linear-gradient(90deg, #8e54e9, #4776e6);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(97, 219, 251);
+  border-radius: 10px;
 }

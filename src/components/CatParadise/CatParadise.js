@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CatParadiseHeader from "../CatParadiseHeader/CatParadiseHeader";
-import CatParadiseBody from "../CatParadiseBody/CaParadiseBody";
+import CatParadiseBody from "../CatParadiseBody/CatParadiseBody";
 
 const CatParadise = () => {
   let [catBreeds, updateData] = useState([]);
