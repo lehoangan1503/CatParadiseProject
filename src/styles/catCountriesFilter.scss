@@ -1,0 +1,23 @@
+.catCountriesFilter-container {
+  .countries {
+    display: flex;
+    flex-flow: row wrap;
+    width: 65%;
+    margin: 2rem auto;
+
+    .country {
+      border: 1px solid rgb(170, 166, 166);
+      margin: 5px 10px;
+
+      p {
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin: 0;
+        font-family: "Times New Roman", Times, serif;
+        text-transform: uppercase;
+        padding: 5px;
+        opacity: 0.8;
+      }
+    }
+  }
+}
