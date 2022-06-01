@@ -62,7 +62,7 @@ class CatParadiseHeader extends Component {
     return (
       <div className="catParadiseHeader-container">
         <div className="project-title">
-          <h1>30 Days Of React</h1>
+          <h1>Cat and chill</h1>
         </div>
         <div className="commonCatInfor-container">
           <img

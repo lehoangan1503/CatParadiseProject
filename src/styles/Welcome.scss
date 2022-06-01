@@ -1,0 +1,235 @@
+@import "node_modules/mathsass/dist/math";
+
+$numer-of-text: 8;
+$mult-num-text: 360 / $numer-of-text;
+$number-of-particle: 12;
+$mult-num-particle: 360 / $number-of-particle;
+@use "sass:math";
+.Welcome {
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  position: relative;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  @for $i from 0 through 7 {
+    .background-#{$i} {
+      position: absolute;
+      left: 12.5% * $i;
+      height: 100vh;
+      background-color: hsl($i * $mult-num-text, 80%, 60%);
+      animation: background-animation 2s ease-in-out 5.5s 1 normal forwards;
+    }
+  }
+}
+
+@keyframes background-animation {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 12.5%;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    width: 25%;
+  }
+}
+
+.welcome-text {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  @for $i from 0 through 7 {
+    .word-#{$i} {
+      position: relative;
+      font-size: 2rem;
+      width: 30px;
+      height: 50px;
+      opacity: 0;
+      display: inline-block;
+      margin-left: 15px;
+      animation: text-animation
+          1s
+          ease-in-out
+          ((1s + ($i * 0.2s)))
+          normal
+          forwards,
+        text-animation2-#{$i} 2s ease-in-out 6.5s normal forwards;
+      overflow: hidden;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -15px;
+        height: 40px;
+
+        animation: text-after-animation-#{$i} 2s linear 3.6s normal forwards;
+      }
+    }
+  }
+}
+@keyframes text-animation {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(3, 3);
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@for $i from 0 through 7 {
+  @keyframes text-after-animation-#{$i} {
+    0% {
+      width: 0;
+      background-color: hsl($i * $mult-num-text, 80%, 60%);
+    }
+    50% {
+      width: 40px;
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+}
+@for $i from 0 through 7 {
+  @if $i != 7 {
+    @keyframes text-animation2-#{$i} {
+      0% {
+        left: 0px;
+        opacity: 0.8;
+      }
+      50% {
+        left: 40px;
+        opacity: 0;
+      }
+      100% {
+        left: 40px;
+        opacity: 0;
+      }
+    }
+  } @else {
+    @keyframes text-animation2-#{$i} {
+      0% {
+        left: 0;
+        opacity: 1;
+      }
+      50% {
+        left: 100px;
+        opacity: 1;
+      }
+      60% {
+        left: 100px;
+        opacity: 1;
+        transform: scale(2, 2) rotate(90deg);
+      }
+      70% {
+        left: 100px;
+        opacity: 1;
+        transform: scale(3, 3) rotate(90deg);
+      }
+      75% {
+        left: 100px;
+        opacity: 1;
+        transform: scale(2, 2) rotate(90deg);
+      }
+      100% {
+        left: 1000px;
+        opacity: 0;
+        transform: scale(2, 2) rotate(90deg);
+      }
+    }
+  }
+}
+
+.balls {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  @for $i from 0 through 7 {
+    .ball-#{$i} {
+      position: relative;
+      top: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      opacity: 0;
+      display: inline-block;
+      margin-left: 15px;
+      background-color: hsl($i * $mult-num-text, 80%, 60%);
+      animation: ball-animation 1s ease-in-out ($i * 0.2s) normal forwards;
+    }
+  }
+  @keyframes ball-animation {
+    0% {
+      transform: translateY(-1000px);
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+}
+.particles {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+
+  @for $i from 0 through 7 {
+    .particle-#{$i} {
+      position: relative;
+      top: 10px;
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      margin-left: 15px;
+      @for $j from 0 through 11 {
+        .particle-small-#{$j} {
+          top: 0;
+          left: 0;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          position: absolute;
+          opacity: 0;
+          background-color: hsl($i * $mult-num-text, 80%, 60%);
+          animation: particle-small-animation-#{$j}
+            1s
+            ease-in-out
+            (1s + $i * 0.2s)
+            normal
+            forwards;
+        }
+        @keyframes particle-small-animation-#{$j} {
+          0% {
+            opacity: 0;
+            transform: scale(1, 1);
+          }
+          100% {
+            left: cos($j * $mult-num-particle * ($PI/180)) * 100px;
+            top: sin($j * $mult-num-particle * ($PI/180)) * 100px;
+            opacity: 1;
+            transform: scale(0, 0);
+          }
+        }
+      }
+    }
+  }
+}
